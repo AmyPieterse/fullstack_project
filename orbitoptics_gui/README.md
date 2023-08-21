@@ -1,4 +1,4 @@
-# orbitoptic
+# orbitoptics_gui
 
 ## Project setup
 ```
