@@ -1,10 +1,28 @@
 const database = require ('../config')
 
-class Users{  //contains all the methods that you have in database
-    fetchUsers(req,res){
+class Products{  //contains all the methods that you have in database
+    async createProduct(req,res){
+        const data =req.body //saving req.body in object
+        //payload
+        const user ={
+            //Payload is data that comes from user
+            // all data that comes from req.body we save in a new object data
+            productName : data.prodName,
+            price : data.amount
+        }
+        const query =`
+        INSERT INTO Products
+        SET ?
+        `
+        db.query(query,[data],(err)=>{
+            if (err) throw err
+            
+        })
+    }
+    fetchProducts(req,res){
         const query =
-        `SELECT userID, firstName,lastName, gender, userDOB, emailAdd, profileUrl
-        FROM Users;`
+        `SELECT prodID, prodName, quantity, amount, category, prodURL
+        FROM Products;`
         database.query(query,(err,results)=>{
             if(err) throw err
             res.json({
@@ -79,45 +97,31 @@ class Users{  //contains all the methods that you have in database
                 }
         })
     }
-    async register(req,res){
+    async createProduct(req,res){
         const data =req.body //saving req.body in object
-        //before we can register a user we need to make sure we encrypt the password
-        data.userPass = await hash(data.userPass,15)
         
         //payload
         const user ={
             //Payload is data that comes from user
             // all data that comes from req.body we save in a new object data
-            emailAdd : data.emailAdd,
-            userPass : data.userPass
+            productName : data.prodName,
+            price : data.amount
         }
         const query =`
-        INSERT INTO Users
+        INSERT INTO Products
         SET ?
         `
         db.query(query,[data],(err)=>{
             if (err) throw err
-            let token = createToken(user)
-            res.cookie('UserCookie',token,
-            {
-                maxAge:3600000,
-                httpOnly:true
-            })
-            res.json({
-                status:res.statusCode,
-                msg:"You are now registered."
-            })
+            
         })
     }
-    updateUser(req,res){
+    updateProduct(req,res){
         const data = req.body
-        if(data.userPass){
-            data.userPass = hashSync(data.userPass,15)
-        }
         const query =`
-        UPDATE Users
+        UPDATE products
         SET ?
-        WHERE userID = ${req.params.id};
+        WHERE prodID = ${req.params.id};
         `
         db.query(query,[req.body],(err)=>{
             if(err) throw err
@@ -127,10 +131,10 @@ class Users{  //contains all the methods that you have in database
             })
         })
     }
-    deleteUser(req,res){
+    deleteProduct(req,res){
         const query =`
-        DELET FROM Users
-        WHERE userID = ${req.params.id};
+        DELETE FROM Products
+        WHERE prodID = ${req.params.id};
         `
         db.query(query,(err)=>{
             if(err) throw err
