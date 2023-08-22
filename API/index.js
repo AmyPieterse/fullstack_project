@@ -1,8 +1,8 @@
 // Imported modules
-const express = require('express')//imports express module
-//express is a node framework that makes it easier to create routes, handle requests and manage middleware
+const { express, routes} = require('./controller');//imports express module
 const cors = require('cors')
 const cookieParser = require("cookie-parser")
+const errorHandling = require('./middleware/error-handling');
 
 const PORT = +process.env.PORT || 3000 
 

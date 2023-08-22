@@ -75,4 +75,4 @@ class Products{  //contains all the methods that you have in database
         })
     }
 }
-module.exports = Users
+module.exports = Products
