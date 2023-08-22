@@ -10,6 +10,8 @@
 </div>
 <section>
 <div class="blogs">
+ 
+    
 
 
 
@@ -60,10 +62,7 @@
   transform: translate(-50%, -50%);
 
 }
-.blogs {
-background-color:  rgb(152, 83, 152);
 
-}
 
 
 
