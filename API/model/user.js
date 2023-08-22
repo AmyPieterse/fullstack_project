@@ -3,8 +3,8 @@ const database = require ('../config')
 class Users{  //contains all the methods that you have in database
     fetchUsers(req,res){
         const query =
-        `SELECT userID, firstName,lastName, gender, userDOB, emailAdd, profileUrl
-        FROM Users;`
+        `SELECT userID, firstName,lastName, userAge, gender, userRole, emailAdd, userProfile
+        FROM users;`
         database.query(query,(err,results)=>{
             if(err) throw err
             res.json({

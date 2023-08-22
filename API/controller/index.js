@@ -1,16 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const routes = express.Router()
+const routes = express()
 
 //Import all model's objects
-const {users} = require('../model')
+const {users, products} = require('../model')
 
 routes.get('/users',(req, res)=>{    //ROUTE FUNCTIONALITY-GET '/users'
     users.fetchUsers(req, res)
 })
 
 routes.get('/user/:id',(req,res)=>{ //ROUTE FUNCTIONALITY- GET '/users/:id'
-    users.fetchUsers(req,res)
+    users.fetchUser(req, res)
 })
 
 routes.post('/register',bodyParser.json(), //ROUTE FUNCTIONALITY-POST '/users' (registration)
@@ -32,6 +32,29 @@ routes.post('/users/',bodyParser.json(), //ROUTE FUNCTIONALITY-POST '/users/ (lo
 
 routes.delete('/user/:id',(req,res)=>{  //ROUTE FUNCTIONALITY- DELETE '/users/:id'
     users.deleteUser(req,res)
+})
+
+routes.get('/products',()=>{
+    products.fetchProducts(req,res)
+})
+
+routes.get('/products/:id',(req,res)=>{
+    products.fetchProduct(req,res)
+})
+
+routes.post('/products',bodyParser.json(),
+    (req,res)=>{
+    products.createProduct(req,res)
+    }
+)
+
+routes.patch('/products/:id',bodyParser.json(), 
+    (req,res)=>{
+    products.updateProduct(req,res)
+})
+
+routes.delete('/products/:id',(req,res)=>{  
+    products.deleteProduct(req,res)
 })
 
 module.exports = {
