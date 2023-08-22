@@ -18,18 +18,8 @@
   </div>
 </div>
 <h1>Our <span>Partners</span></h1>
-<div class="partners"></div>
-<div class="container">
-            <div class="card" >
-                <div class="image">
-                    <img src="" class="card-img-top" alt="" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-        </div>
+
+
         
     </div>
   </body>
@@ -56,25 +46,9 @@ h1{
   text-align: center;
   color: white;
 }
-.container img {
-    /* width: 200px;
-    height: 200px; */
-  
-    aspect-ratio: 3/5;
-    margin-top: 5px;
-}
-.container {
-    /*row*/
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin-top: 5%;
-    /* border: 5px solid rgba(10, 18, 33, 0.59); */
-    border-radius: 10px;
-}
-/*card*/
+
+
+
 
 
 
