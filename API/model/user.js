@@ -3,8 +3,8 @@ const database = require ('../config')
 class Users{  //contains all the methods that you have in database
     fetchUsers(req,res){
         const query =
-        `SELECT userID, firstName,lastName, gender, userDOB, emailAdd, profileUrl
-        FROM Users;`
+        `SELECT userID, firstName,lastName, userAge, gender, userRole, emailAdd, userProfile
+        FROM users;`
         database.query(query,(err,results)=>{
             if(err) throw err
             res.json({
@@ -81,12 +81,10 @@ class Users{  //contains all the methods that you have in database
     }
     async register(req,res){
         const data =req.body //saving req.body in object
-        //before we can register a user we need to make sure we encrypt the password
         data.userPass = await hash(data.userPass,15)
         
         //payload
         const user ={
-            //Payload is data that comes from user
             // all data that comes from req.body we save in a new object data
             emailAdd : data.emailAdd,
             userPass : data.userPass
@@ -129,7 +127,7 @@ class Users{  //contains all the methods that you have in database
     }
     deleteUser(req,res){
         const query =`
-        DELET FROM Users
+        DELETE FROM Users
         WHERE userID = ${req.params.id};
         `
         db.query(query,(err)=>{
