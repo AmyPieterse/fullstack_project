@@ -20,6 +20,6 @@ export default {
 
 <style>
 body{
-  background-color: rgb(61, 61, 61)!important;
+background-color: rgb(30, 30, 30)!important;
 }
 </style>

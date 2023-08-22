@@ -1,41 +1,78 @@
 <template>
-    <div class="Footer">
-        <div class="container text-center">
-  <div class="row align-items-center">
-    <div class="col">
-  <h4>OrbitOptics</h4>
-    </div>
-    <div class="col">
-   <h4>Navigate our pages:</h4>
-
-   <h6>Home<br>
-About<br>Products<br>Admin<br>Reach Us</h6>
-    </div>
-    <div class="col">
-       <a href="https://www.instagram.com/"><img src="https://i.postimg.cc/Pf09sfd3/instagram-removebg-preview.png" alt=""></a>
-       <a href="https://www.facebook.com/"><img src="https://i.postimg.cc/2yYWhB49/Screenshot-2023-08-21-100537-removebg-preview.png" alt=""></a>
-<h6>Follow our social media</h6>
+    <div class="container-fluid">
+  <div class="Footer">
+    <div class="container-fluid text-center">
+      <div class="row align-items-center" id="row">
+        <div class="col-2">
+          <h3>OrbitOptics</h3>
+        </div>
+        <div class="col">
+          <p>Navigate our pages:</p>
+          <p>
+            Home<br />
+            About<br />Products<br />Admin<br />Reach Us
+          </p>
+        </div>
+        <div class="col">
+          <div>
+            <a href="https://www.instagram.com/"
+              ><img
+                src="https://i.postimg.cc/Pf09sfd3/instagram-removebg-preview.png"
+                alt=""
+            /></a>
+            <a href="https://www.facebook.com/"
+              ><img
+                src="https://i.postimg.cc/2yYWhB49/Screenshot-2023-08-21-100537-removebg-preview.png"
+                alt=""
+            /></a>
+            <h5>Follow our social media</h5>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-    </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
 <style scoped>
-h4{
-    color: white;
+#row{
+    padding: 4.5rem;
 }
-h6{
-    color: white;
+.Footer{
+    height:18rem;
 }
-img{
-    width: 50px;
+h3 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: left;
+  color: white;
+}
+h6 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: left;
+  color: white;
+}
+img {
+  width: 50px;
+}
+.container-fluid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.Footer {
+width:99.5%;
+  border-bottom: 1px solid white;
+}
+p {
+  text-align: left;
+  color: white;
+}
+h5 {
+  color: white;
 }
 </style>
