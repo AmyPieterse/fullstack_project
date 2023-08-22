@@ -10,7 +10,8 @@
 </div>
 <section>
 <div class="blogs">
- 
+ <h1>hellooo</h1>
+
     
 
 
@@ -62,6 +63,8 @@
   transform: translate(-50%, -50%);
 
 }
+
+
 
 
 
