@@ -5,7 +5,6 @@ class Products{  //contains all the methods that you have in database
         const data =req.body //saving req.body in object
         //payload
         const user ={
-            //Payload is data that comes from user
             // all data that comes from req.body we save in a new object data
             productName : data.prodName,
             price : data.amount,

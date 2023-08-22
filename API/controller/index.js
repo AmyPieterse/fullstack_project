@@ -5,7 +5,7 @@ const routes = express.Router()
 //Import all model's objects
 const {users} = require('../model')
 
-routes.get('/users',(req,res)=>{    //ROUTE FUNCTIONALITY-GET '/users'
+routes.get('/users',(req, res)=>{    //ROUTE FUNCTIONALITY-GET '/users'
     users.fetchUsers(req, res)
 })
 
