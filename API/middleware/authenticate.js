@@ -19,8 +19,9 @@ function verifyAToken(req, res, next){
     try{
         console.log("Get token from req.headers['authorization']");
         const token = req.headers["authorization"]
-        console.log(token);
-        next()
+        if(verify(token,)){ 
+            next()
+        }
     }catch(e){
         res.json({
             status: res.statusCode,
