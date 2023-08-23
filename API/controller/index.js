@@ -24,7 +24,7 @@ routes.patch('/users/:id',bodyParser.json(), //ROUTE FUNCTIONALITY-PUT or PATCH 
     users.updateUser(req,res)
 })
 
-routes.post('/users/',bodyParser.json(), //ROUTE FUNCTIONALITY-POST '/users/ (login)
+routes.post('/users',bodyParser.json(), //ROUTE FUNCTIONALITY-POST '/users (login)
     (req,res)=>{
     users.login(req,res)
     }
