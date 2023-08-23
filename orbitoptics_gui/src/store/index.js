@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+const link = "https://node-eomp-4a72.onrender.com/"
 
 
 export default createStore({
@@ -37,7 +38,7 @@ msg: null
   actions: {
     async fetchProducts(context){
       try{
-        const {data} = (await axios.get(`${link}products`)).data
+        const {data} = (await axios.get(`${link}products`))
         context.commit("setProducts", data.results)
       } catch(e){
         context.commit("setMsg", "An error occured")

@@ -3,7 +3,7 @@
    <div class="container text-center">
   <div class="row text-center">
     <div class="col text-center">
-    <img class="contact-info" src="https://i.postimg.cc/63SKTTNQ/contact-img-1.jpg" alt="">
+    <img class="contact-info" src="https://o.remove.bg/downloads/da986c23-05b1-41df-bce8-5e34eb36fe30/logo__3_-removebg-preview.png" alt="">
     </div>
     <div class="col">
       <form action="https://formspree.io/f/meqbqjyk" method="POST">
@@ -41,12 +41,11 @@
 
 <style scoped>
 .contact-info{
- box-shadow:2px 2px 2px 5px black;
- margin-top: 20px;
- width: 400px;
+ width: 500px;
  }
  .contact{
-    margin-top: 20px;
+  
+    margin-top: 50px;
  }
  
 
