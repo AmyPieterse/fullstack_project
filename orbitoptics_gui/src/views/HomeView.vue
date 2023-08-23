@@ -1,15 +1,18 @@
 <template>
    <body>
-    
+    <section class="banner">
+      <!-- <div class="overlay"></div> -->
+      <div class="text">OrbitOptics <h4>An e-commerce making it easier for astronomers</h4> </div>
+    </section>
  
  <div class="container">
 <!-- <img src="https://media.istockphoto.com/id/494497678/photo/milky-way-at-dawn-and-silhouette-of-a-telescope.jpg?s=612x612&w=0&k=20&c=FigoHw75tv92d0M9MK9jaI6LGCZsM9DZBjm6KD9QbsE=" alt="" class="image"> -->
-<img cl src="https://i.postimg.cc/htt8VpF5/wallpaperflare-com-wallpaper.jpg" alt="" class="image">
-<div class="overlay"></div>
-<div class="text">OrbitOptics <h4>An e-commerce making it easier for astronomers</h4> </div>
+<!-- <img cl src="https://i.postimg.cc/htt8VpF5/wallpaperflare-com-wallpaper.jpg" alt="" class="image"> -->
+
 </div>
 <section>
-<div class="blogs">
+  <section  class="blogs">
+
   <div class="container text-center">
   <div class="row align-items-center">
     <div class="col">
@@ -53,23 +56,8 @@ In the grand tapestry of existence, the cosmos stands as an endless expanse of w
     </div>
 </div>
 </div>
-<div class="cosmetic stories">
- <div class="container text-center">
-  <div class="row align-items-center">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-  </div>
-</div>
+</section>
 
-</div>
-</div>
 
 </section>
    </body>
@@ -82,10 +70,16 @@ In the grand tapestry of existence, the cosmos stands as an endless expanse of w
 </script>
 
 <style scoped>
-.container{
-  position: relative;
+.banner{
+  /* position: relative; */
   width: 100%;
-
+  background-image: url('https://i.postimg.cc/HLGwtZ6p/this-one.jpg');
+background-size: cover;
+height: 100vh;
+background-attachment: fixed;
+}
+.banner .text{
+  text-shadow: 2px 2px 20px black;
 }
 .image{
   display: block;
@@ -119,14 +113,7 @@ In the grand tapestry of existence, the cosmos stands as an endless expanse of w
 }
 .blogs{background-image: linear-gradient(to top, #5e3377, #623080, #652d8a, #682a93, #6a269d, #6724a0, #6421a4, #601fa7, #561fa5, #4b2db8, #492a9f, #1f0a87);
 }
-
-/* .container img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    aspect-ratio: 3/5;
-    margin-top: 5px;
-} */
+ 
 .container {
     /*row*/
     display: flex;
@@ -134,8 +121,6 @@ In the grand tapestry of existence, the cosmos stands as an endless expanse of w
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    /* margin-top: 5%;
-    border: 5px solid rgba(10, 18, 33, 0.59); */
     border-radius: 10px;
 }
 /*card*/
@@ -143,7 +128,6 @@ In the grand tapestry of existence, the cosmos stands as an endless expanse of w
     box-shadow: 2px 2px 20px black;
     width: 30rem;
     margin: 20px;
-    /* text-align: center; */
     margin-left: 80px;
     backdrop-filter: blur(6px) saturate(165%);
     -webkit-backdrop-filter: blur(6px) saturate(165%);
