@@ -1,43 +1,130 @@
 <template>
-    <div class="Admin">
-        <table>
-        <tr>
-          <th>Name </th>
-          <th>Price</th>
-          <th>Image</th>
-          <th>edit</th>
-          <th>delete</th>
-        </tr>
-        
-        <tbody id="whereTheyDisplay">
+  <div class="Admin">
+    <div class="Products-table">
+      <h4>Products</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-black">Name</th>
+            <th class="text-black">Catorgory</th>
+            <th class="text-black">Quntity</th>
+            <th class="text-black">Price</th>
+            <th class="text-black">Image</th>
+            <th class="text-black">Edit</th>
+            <th class="text-black">Delete</th>
+          </tr>
+        </thead>
+        <tbody
+          id="whereTheyDisplay"
+          v-for="item in products"
+          :key="item.prodID"
+        >
+          <tr>
+            <td>{{ item.prodName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.category }}</td>
+            <td>
+              <img :src="item.prodURL" alt="" width="10rem" />
+            </td>
+            <td><button class="edit-btn">Edit</button></td>
+            <td>
+              <button class="del-btn" onclick="deleteProduct() ">Delete</button>
+            </td>
+          </tr>
         </tbody>
       </table>
-     
-
-`
-    <tr class="tr">
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><img src="${item.products_image }" alt="" width="50px" heigth="50px"></td>
-    <td><button class="edit-btn">Edit</button></td>
-    <td><button class="del-btn" onclick="deleteProduct() ">Delete</button></td>
-    </tr>
-    `
-
-      
     </div>
+    <div class="User-table">
+      <h4>Users</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-black">UserID</th>
+            <th class="text-black">FirstName</th>
+            <th class="text-black">LastName</th>
+            <th class="text-black">UserAge</th>
+            <th class="text-black">Gender</th>
+            <th class="text-black">UserRole</th>
+            <th class="text-black">EmailAdd</th>
+            <th class="text-black">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="whereTheyDisplay">
+          <tr class="tr" v-for="item in users" :key="item.userID">
+            <td>{{ item.UserID }}</td>
+            <td>{{ item.firstName }}</td>
+            <td>{{ item.lastName }}</td>
+            <td>{{ item.userAge }}</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.userRole }}</td>
+            <td>{{ item.emailAdd }}</td>
+            <td>
+              <button class="edit-btn">Edit</button>
+              <button class="del-btn" onclick="deleteProduct() ">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {
+  computed: {
+    products() {
+      return this.$store.state.products;
+    },
+    users() {
+      return this.$store.state.users;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("fetchUsers");
+    this.$store.dispatch("fetchProducts");
+  },
+};
 </script>
 
 <style scoped>
+table {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 200px;
+}
+tr {
+  border: 1px solid white;
+}
+table tr th {
+  border-bottom: 2px solid white;
+}
+td {
+  text-align: center;
+}
+th {
+  color: white;
+}
+h4 {
+  text-align: center;
+  color: white;
+}
 
-
-
-
+.edit-btn{
+    padding: 10px;
+    background-color: rgb(30, 30, 30);
+    color: white;
+    border: 1px solid rgb(30, 30, 30);
+}
+.edit-btn:hover{
+    color: rgb(30, 30, 30);
+    background-color: white
+}
+.del-btn{
+    padding: 10px;
+    background-color: rgb(30, 30, 30);
+    color: white;
+    border: 1px solid rgb(30, 30, 30);
+}
 </style>

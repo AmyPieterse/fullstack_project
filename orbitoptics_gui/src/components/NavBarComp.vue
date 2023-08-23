@@ -24,6 +24,7 @@
           <router-link class="nav-link" to="/contact">Reach Us</router-link>
         </li>
       </ul>
+
     </div>
   </div>
 </nav>
