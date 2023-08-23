@@ -3,7 +3,8 @@ const { express, routes} = require('./controller')//imports express module
 const cors = require('cors')
 const cookieParser = require("cookie-parser")
 const path = require('path')
-// const errorHandling = require('./middleware/error-handling')
+const errorHandling = require('./middleware/error-handling')
+
 
 const PORT = +process.env.PORT || 1738 
 
@@ -34,7 +35,7 @@ routes.get('/',(req,res)=>{
     res.sendFile(path.resolve(__dirname,'./static/html/index.html'))
 })
 
-// app.use(errorHandling);
+app.use(errorHandling);
 
 //Server 
 app.listen(PORT, () => {

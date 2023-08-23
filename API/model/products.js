@@ -1,6 +1,6 @@
 const database = require ('../config')
 
-class Products{  //contains all the methods that you have in database
+class Products{ 
     async createProduct(req,res){
         const data =req.body //saving req.body in object
         //payload
@@ -12,17 +12,17 @@ class Products{  //contains all the methods that you have in database
             image : data.prodURL
         }
         const query =`
-        INSERT INTO Products
+        INSERT INTO products
         SET ?
         `
-        db.query(query,[data],(err)=>{
+        database.query(query,[data],(err)=>{
             if (err) throw err
         })
     }
     fetchProducts(req,res){
         const query =
         `SELECT prodID, prodName, quantity, amount, category, prodURL
-        FROM Products;`
+        FROM products;`
         database.query(query,(err,results)=>{
             if(err) throw err
             res.json({
@@ -31,17 +31,28 @@ class Products{  //contains all the methods that you have in database
             })
         })
     }
-    fetchProduct(req,res){
-        const query =`
-        SELECT userID, firstName,lastName, gender, userDOB, emailAdd, profileUrl
-        FROM Users
-        WHERE userID = ${req.params.id};
-        `
+
+    async fetchProduct(req,res){
+        const query =`SELECT prodID,prodName, quantity, amount, category, prodURL
+        FROM products
+        WHERE prodID = ${req.params.id};`
+        
         database.query(query,(err,result)=>{
-            if(err) throw err
+            if(err){
+                return res.status(500).json({
+                    status:res.statusCode,
+                    message: 'Error fetching product'
+                })
+            }
+            if (result.length === 0){
+                return res.status(404).json({
+                status: res.statusCode,
+                message: 'Product not found'
+                })
+            }
             res.json({
                 status:res.statusCode,
-                result
+                result: result[0]
             })
         })
     }
@@ -52,7 +63,7 @@ class Products{  //contains all the methods that you have in database
         SET ?
         WHERE prodID = ${req.params.id};
         `
-        db.query(query,[req.body],(err)=>{
+        database.query(query,[req.body],(err)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
@@ -65,11 +76,11 @@ class Products{  //contains all the methods that you have in database
         DELETE FROM Products
         WHERE prodID = ${req.params.id};
         `
-        db.query(query,(err)=>{
+        database.query(query,(err)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
-                msg: "The product record has been deleted."
+                msg: "The product record has been deleted"
             })
         })
     }
