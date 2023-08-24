@@ -37,6 +37,7 @@
     </div>
     <div class="User-table">
       <h4>Users</h4>
+     <AddUser/>
       <table class="table">
         <thead>
           <tr>
@@ -60,10 +61,12 @@
             <td>{{ item.gender }}</td>
             <td>{{ item.userRole }}</td>
             <td>{{ item.emailAdd }}</td>
-            <td>
-              <button class="edit-btn">Edit</button>
+          
+              <td><button class="edit-btn">Edit</button></td>
+              <td>
               <button class="del-btn" onclick="deleteProduct() ">Delete</button>
             </td>
+        
           </tr>
         </tbody>
       </table>
@@ -72,7 +75,11 @@
 </template>
 
 <script>
+import AddUser from '@/components/AddUserComp.vue';
 export default {
+  components:{
+    AddUser
+  },
   computed: {
     products() {
       return this.$store.state.products;
@@ -90,15 +97,16 @@ export default {
 
 <style scoped>
 table {
-  width: 100%;
+  width: 90%;
   text-align: center;
-  margin-bottom: 200px;
+
+  margin-left: 70px;
 }
 tr {
-  border: 1px solid white;
+  border: 1px solid purple;
 }
 table tr th {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid purple;
 }
 td {
   text-align: center;
@@ -127,4 +135,8 @@ h4 {
     color: white;
     border: 1px solid rgb(30, 30, 30);
 }
+.Admin{
+  background-image:linear-gradient(to top, #5e3377, #623080, #652d8a, #682a93, #6a269d, #6724a0, #6421a4, #601fa7, #561fa5, #4b2db8, #492a9f, #1f0a87) ;
+}
+
 </style>
