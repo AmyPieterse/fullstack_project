@@ -12,7 +12,7 @@
 <!-- ********************************* -->
     <div class="col-6">
       <div class="telescope">
-     <img class="gold-telescope" src="https://i.postimg.cc/XJPdpsBS/photo-1619884889432-b242fdee532a-ixlib-rb-4-0.jpg" alt="">
+     <img class="gold-telescope" src="https://i.postimg.cc/xCp8gLZP/viewing-machine-2127704-1280-removebg-preview.png" alt="">
       </div>
     </div>
   </div>
@@ -25,7 +25,7 @@
 <style scoped>
 .about{
   padding-top: 10px;
-background-color:rgb(30, 30, 30) ;
+background-image:linear-gradient(to top, #5e3377, #623080, #652d8a, #682a93, #6a269d, #6724a0, #6421a4, #601fa7, #561fa5, #4b2db8, #492a9f, #1f0a87) ;
 }
 h2{
 

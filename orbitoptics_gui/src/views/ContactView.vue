@@ -3,7 +3,7 @@
    <div class="container text-center">
   <div class="row text-center">
     <div class="col text-center">
-    <img class="contact-info" src="https://o.remove.bg/downloads/da986c23-05b1-41df-bce8-5e34eb36fe30/logo__3_-removebg-preview.png" alt="">
+    <img class="contact-info" src="https://i.postimg.cc/PqgTqK09/logo-3-removebg-preview.png" alt="">
     </div>
     <div class="col">
       <form action="https://formspree.io/f/mdorgdzb" method="POST">
@@ -44,7 +44,7 @@
  width: 500px;
  }
  .contact{
-  
+  background-image:linear-gradient(to top, #5e3377, #623080, #652d8a, #682a93, #6a269d, #6724a0, #6421a4, #601fa7, #561fa5, #4b2db8, #492a9f, #1f0a87) ;
     margin-top: 50px;
  }
  
