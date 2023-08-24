@@ -9,7 +9,6 @@ function errorHandling(err,req,res,next){
         status,
         message
     })
-
     next()
 }
 module.exports = errorHandling
