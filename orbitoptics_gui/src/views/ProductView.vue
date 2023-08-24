@@ -15,7 +15,9 @@
           {{ product.category }}
         </p>
         <p class="card-text">
-          {{ product.amount }}
+          
+          
+          ${{ product.amount }}
         </p>
 
 <router-link :to="{ name: 'singleProduct', params: { id: product.prodID }, query: {

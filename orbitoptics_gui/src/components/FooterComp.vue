@@ -8,9 +8,13 @@
         </div>
         <div class="col">
           <p>Navigate our pages:</p>
-          <p>
-            Home<br />
-            About<br />Products<br />Admin<br />Reach Us
+          <p class="links">
+            <router-link to="/">Home</router-link> 
+        <router-link to="/about">About</router-link> 
+        <router-link to="/products">Products</router-link> 
+        <router-link to="/admin">Admin</router-link> 
+        <router-link to="/contact">Contact</router-link> 
+
           </p>
         </div>
         <div class="col">
@@ -73,6 +77,17 @@ p {
   color: white;
 }
 h5 {
+  color: white;
+}
+
+.links{
+  display: flex;
+  gap: 2rem;
+  
+}
+
+.links a{
+  text-decoration: none;
   color: white;
 }
 </style>

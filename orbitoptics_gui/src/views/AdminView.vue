@@ -2,6 +2,10 @@
   <div class="Admin">
     <div class="Products-table">
       <h4>Products</h4>
+           <!-- <AddUser/> -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProduct">
+  <i class="bi bi-plus-lg"></i> Product
+</button>
       <table class="table">
         <thead>
           <tr>
@@ -29,7 +33,7 @@
             </td>
             <td><button class="edit-btn">Edit</button></td>
             <td>
-              <button class="del-btn" onclick="deleteProduct() ">Delete</button>
+              <button class="del-btn" @click="deleteProduct(item.prodID) ">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -37,7 +41,9 @@
     </div>
     <div class="User-table">
       <h4>Users</h4>
-     <AddUser/>
+     <!-- <AddUser/> -->
+<AddUser/>
+     <!-- Button trigger modal -->
       <table class="table">
         <thead>
           <tr>
@@ -48,6 +54,7 @@
             <th class="text-black">Gender</th>
             <th class="text-black">UserRole</th>
             <th class="text-black">EmailAdd</th>
+            <th class="text-black">userProfile</th>
             <th class="text-black">Actions</th>
           </tr>
         </thead>
@@ -61,10 +68,11 @@
             <td>{{ item.gender }}</td>
             <td>{{ item.userRole }}</td>
             <td>{{ item.emailAdd }}</td>
+            <td>{{ item.userProfile }}</td>
           
-              <td><button class="edit-btn">Edit</button></td>
               <td>
-              <button class="del-btn" onclick="deleteProduct() ">Delete</button>
+                <button class="edit-btn">Edit</button>
+                <button class="del-btn" @click="deleteUser(item.UserID) ">Delete</button>
             </td>
         
           </tr>
@@ -72,10 +80,50 @@
       </table>
     </div>
   </div>
+<!--  -->
+
+
+<!-- add user -->
+<div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- add product -->
+<div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
 import AddUser from '@/components/AddUserComp.vue';
+
 export default {
   components:{
     AddUser
@@ -86,12 +134,17 @@ export default {
     },
     users() {
       return this.$store.state.users;
-    },
+    }
   },
   mounted() {
     this.$store.dispatch("fetchUsers");
     this.$store.dispatch("fetchProducts");
   },
+  methods:{
+    deleteProduct(prodID){
+      this.$store.dispatch('deleteProduct', prodID)
+    }
+  }
 };
 </script>
 

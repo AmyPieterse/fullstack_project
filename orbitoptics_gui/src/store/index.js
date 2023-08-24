@@ -11,7 +11,8 @@ products: null,
 product:null,
 spinner:false,
 token: null,
-msg: null
+msg: null,
+inputDetails: null
 },
   getters: {
   },
@@ -33,6 +34,12 @@ msg: null
     },
     setToken(state, token){
       state.token = token
+    },
+    setInputs(state, data){
+      state.inputDetails = data
+    },
+    setDelete(state, data){
+      state.products = data
     }
   },
   actions: {
@@ -44,14 +51,40 @@ msg: null
         context.commit("setMsg", "An error occured")
       }
     },
+    async deleteProduct(context, prodID){
+      try {
+        const res = await axios.delete(`${link}products/${prodID}`)
+        // this.$store.dispatch('fetchProducts')
+        context.commit('setDelete', res)
+      } catch ( error ){
+        alert( error )
+      }
+    },
     async fetchUsers(context){
       try{
-        const {data} = (await axios.get(`${link}users`))
+        const {data} = (await axios.get(`${link}register`))
         context.commit("setUsers", data.results)
       } catch(e){
         context.commit("setMsg", "An error occured")
       }
     },
+    async addUsers(context, userForm){
+      try{
+        const res = await axios.post(`${link}users`, userForm)
+        context.commit('setInputs', res.data)
+        console.log(res.data);
+        // const {msg, err} = await res.data
+        // if(msg){
+        //   context.commit('setInputs', res.data)
+        // }
+        // if(err){
+        //   console.log("An error has occured")
+        // }
+      } catch(e){
+        console.log("An error occured")
+      }
+    }, 
+
     // *****************************
   },
   modules: {

@@ -1,8 +1,8 @@
 <template>
 <div>
-<!-- Button trigger modal -->
+    <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
+  + User
 </button>
 
 <!-- Modal -->
@@ -14,7 +14,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <form @submit.prevent="submitUser">
+            <input type="text" v-model="userForm.firstName" placeholder="firstName">
+            <input type="text" v-model="userForm.lastName" placeholder="lastName">
+            <input type="number" v-model="userForm.userAge" placeholder="userAge">
+            <input type="text" v-model="userForm.gender" placeholder="gender">
+            <input type="text" v-model="userForm.userRole" placeholder="userRole">
+            <input type="text" v-model="userForm.emailAdd" placeholder="emailAdd">
+            <input type="text" v-model="userForm.userPass" placeholder="userPass">
+            <input type="text" v-model="userForm.profileUrl" placeholder="profileUrl">
+            <button type="submit">Add</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -28,7 +38,28 @@
 
 <script>
     export default {
-        
+        data(){
+            return{
+                userForm:{
+                    firstName:"",
+                    lastName:"",
+                    userAge:"",
+                    gender:"",
+                    userRole:"",
+                    emailAdd:"",
+                    userPass:"",
+                    profileUrl:""
+                }
+            }
+        },
+        methods:{
+            async submitUser(){
+                this.$store.dispatch('addUsers', this.userForm)
+                // setTimeout(()=>{
+                //     location.reload()
+                // }, 500)
+            }
+        }
     }
     
 </script>
