@@ -17,13 +17,23 @@ function createToken(user){
 
 function verifyAToken(req, res, next){
     try{
-        console.log("Get token from req.headers['authorization']");
         const token = req.headers["authorization"]
-        if(verify(token,)){ 
-            next()
+        if(!token){
+            return res.status(401).json({
+                status:res.statusCode,
+                msg:'Authorization token not found'
+            })
         }
+        const decodedToken = verify(token, process.env.SECRET_KEY);
+        if(!decodedToken){
+            return res.status(403).json({
+                status:res.statusCode,
+                msg:"Invalid token"
+            })
+        }
+        next()
     }catch(e){
-        res.json({
+        res.status(500).json({
             status: res.statusCode,
             msg: e.message
         })
