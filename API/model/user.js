@@ -15,15 +15,26 @@ class Users{  //contains all the methods that you have in database
     }
     fetchUser(req,res){
         const query =`
-        SELECT userID, firstName,lastName, gender, userDOB, emailAdd, profileUrl
-        FROM Users
+        SELECT userID, firstName,lastName, userAge, gender, userRole, emailAdd, userProfile
+        FROM users
         WHERE userID = ${req.params.id};
         `
         database.query(query,(err,result)=>{
-            if(err) throw err
+            if(err){
+                return res.status(500).json({
+                    status: res.statusCode,
+                    message: 'Error fetching user'
+                })
+            }
+            if(result.length===0){
+                return res.status(404).json({
+                    status:res.statusCode,
+                    message: 'User not found'
+                })
+            }
             res.json({
                 status:res.statusCode,
-                result
+                result: result[0]
             })
         })
     }
