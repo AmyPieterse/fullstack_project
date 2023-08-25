@@ -1,5 +1,5 @@
 const database = require ('../config')
-
+const {hash, hashSync, compare} = require('bcrypt')
 class Users{  //contains all the methods that you have in database
     fetchUsers(req,res){
         const query =
