@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const routes = express()
-
+const {verifyAToken} = require('../middleware/authenticate')
 //Import all model's objects
 const {users, products} = require('../model')
 
@@ -34,7 +34,7 @@ routes.delete('/users/:id',(req,res)=>{  //ROUTE FUNCTIONALITY- DELETE '/users/:
     users.deleteUser(req,res)
 })
 
-routes.get('/products',(req,res)=>{ 
+routes.get('/products', (req,res)=>{ 
     products.fetchProducts(req,res)  //ROUTE FUNCTIONALITY-GET '/products'
 })
 

@@ -1,5 +1,4 @@
 const database = require ('../config')
-
 class Products{ 
     async createProduct(req,res){
         const data =req.body //saving req.body in object

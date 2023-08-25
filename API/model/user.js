@@ -1,5 +1,6 @@
 const database = require ('../config')
 const {hash, hashSync, compare} = require('bcrypt')
+const {createToken} = require('../middleware/authenticate')
 class Users{  //contains all the methods that you have in database
     fetchUsers(req,res){
         const query =
@@ -66,12 +67,6 @@ class Users{  //contains all the methods that you have in database
                         createToken({
                             emailAdd,
                             userPass
-                        })
-                        // Save a token
-                        res.cookie("LegitUser",
-                        token, {
-                            maxAge: 3600000,
-                            httpOnly: true
                         })
                         if(cResult) {
                             res.json({
