@@ -2,8 +2,8 @@ const database = require ('../config')
 class Products{ 
     async createProduct(req,res){
         const data =req.body //saving req.body in object
-        //payload from user
-        const user ={
+        //payload from products
+        const product ={
             // all data that comes from req.body we save in a new object data
             productName : data.prodName,
             price : data.amount,
@@ -18,7 +18,7 @@ class Products{
             if (err) throw err
             res.json({
                 status: res.statusCode,
-                msg: "User inserted"
+                msg: "Product inserted"
             })
         })
     }
@@ -34,7 +34,7 @@ class Products{
             })
         })
     }
-    async fetchProduct(req,res){
+    fetchProduct(req,res){
         const query =`SELECT prodID, prodName, quantity, amount, category, prodURL
         FROM products
         WHERE prodID = ${req.params.id};`
