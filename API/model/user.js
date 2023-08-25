@@ -48,7 +48,7 @@ class Users{  //contains all the methods that you have in database
         FROM Users
         WHERE emailAdd = '${emailAdd}';
         `
-        db.query(query,[userPass], async (err, result)=>{
+        database.query(query,[userPass], async (err, result)=>{
             console.log(result,userPass);
             if(err) throw err
             if(!result?.length){
@@ -104,7 +104,7 @@ class Users{  //contains all the methods that you have in database
         INSERT INTO Users
         SET ?;
         `
-        db.query(query,[data],(err)=>{
+        database.query(query,[data],(err)=>{
             if (err) throw err
             let token = createToken(user)
             res.json({
@@ -124,7 +124,7 @@ class Users{  //contains all the methods that you have in database
         SET ?
         WHERE userID = ${req.params.id};
         `
-        db.query(query,[req.body],(err)=>{
+        database.query(query,[req.body],(err)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
@@ -137,7 +137,7 @@ class Users{  //contains all the methods that you have in database
         DELETE FROM Users
         WHERE userID = ${req.params.id};
         `
-        db.query(query,(err)=>{
+        database.query(query,(err)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
