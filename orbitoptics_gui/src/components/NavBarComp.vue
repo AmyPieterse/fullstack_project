@@ -51,7 +51,5 @@ height: 70px;
   color: white;
 
 }
-.nav-link:hover{
- 
-}
+
 </style>
