@@ -45,7 +45,7 @@ class Users{  //contains all the methods that you have in database
         SELECT firstName, lastName,
         gender, userDOB, emailAdd, userPass,
         profileUrl
-        FROM Users
+        FROM users
         WHERE emailAdd = '${emailAdd}';
         `
         database.query(query,[userPass], async (err, result)=>{
@@ -101,7 +101,7 @@ class Users{  //contains all the methods that you have in database
             userPass : data.userPass
         }
         const query =`
-        INSERT INTO Users
+        INSERT INTO users
         SET ?;
         `
         database.query(query,[data],(err)=>{
@@ -120,7 +120,7 @@ class Users{  //contains all the methods that you have in database
             data.userPass = hashSync(data.userPass,15)
         }
         const query =`
-        UPDATE Users
+        UPDATE users
         SET ?
         WHERE userID = ${req.params.id};
         `
@@ -134,7 +134,7 @@ class Users{  //contains all the methods that you have in database
     }
     deleteUser(req,res){
         const query =`
-        DELETE FROM Users
+        DELETE FROM users
         WHERE userID = ${req.params.id};
         `
         database.query(query,(err)=>{
