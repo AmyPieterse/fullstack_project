@@ -113,6 +113,7 @@ class Users{  //contains all the methods that you have in database
                 httpOnly:true
             })
             res.json({
+                token,
                 status:res.statusCode,
                 msg:"You are now registered."
             })
