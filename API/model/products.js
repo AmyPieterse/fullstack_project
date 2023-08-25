@@ -72,7 +72,7 @@ class Products{
     }
     deleteProduct(req,res){
         const query =`
-        DELETE FROM Products
+        DELETE FROM products
         WHERE prodID = ${req.params.id};
         `
         database.query(query,(err)=>{
