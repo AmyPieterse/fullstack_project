@@ -18,25 +18,25 @@ class Products{
             if (err) throw err
         })
     }
-
+    fetchProducts(req,res){
+        const query =
+        `SELECT prodID, prodName, quantity, amount, category, prodURL
+        FROM products;`
+        database.query(query,(err,results)=>{
+            if(err) throw err
+            res.json({
+                status:res.statusCode,
+                results
+            })
+        })
+    }
     async fetchProduct(req,res){
-        const query =`SELECT prodID,prodName, quantity, amount, category, prodURL
+        const query =`SELECT prodID, prodName, quantity, amount, category, prodURL
         FROM products
         WHERE prodID = ${req.params.id};`
         
         database.query(query,(err,result)=>{
-            if(err){
-                return res.status(500).json({
-                    status:res.statusCode,
-                    message: 'Error fetching product'
-                })
-            }
-            if (result.length === 0){
-                return res.status(404).json({
-                status: res.statusCode,
-                message: 'Product not found'
-                })
-            }
+            if(err) throw err
             res.json({
                 status:res.statusCode,
                 result: result[0]
