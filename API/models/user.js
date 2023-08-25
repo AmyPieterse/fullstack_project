@@ -1,5 +1,6 @@
 const database = require ('../config')
-
+const {hash, hashSync, compare} = require('bcrypt')
+const {createToken} = require('../middleware/authenticate')
 class Users{  //contains all the methods that you have in database
     fetchUsers(req,res){
         const query =
@@ -45,10 +46,10 @@ class Users{  //contains all the methods that you have in database
         SELECT firstName, lastName,
         gender, userDOB, emailAdd, userPass,
         profileUrl
-        FROM Users
+        FROM users
         WHERE emailAdd = '${emailAdd}';
         `
-        db.query(query,[userPass], async (err, result)=>{
+        database.query(query,[userPass], async (err, result)=>{
             console.log(result,userPass);
             if(err) throw err
             if(!result?.length){
@@ -66,12 +67,6 @@ class Users{  //contains all the methods that you have in database
                         createToken({
                             emailAdd,
                             userPass
-                        })
-                        // Save a token
-                        res.cookie("LegitUser",
-                        token, {
-                            maxAge: 3600000,
-                            httpOnly: true
                         })
                         if(cResult) {
                             res.json({
@@ -101,20 +96,16 @@ class Users{  //contains all the methods that you have in database
             userPass : data.userPass
         }
         const query =`
-        INSERT INTO Users
-        SET ?
+        INSERT INTO users
+        SET ?;
         `
-        db.query(query,[data],(err)=>{
+        database.query(query,[data],(err)=>{
             if (err) throw err
             let token = createToken(user)
-            res.cookie('UserCookie',token,
-            {
-                maxAge:3600000,
-                httpOnly:true
-            })
             res.json({
                 token,
                 status:res.statusCode,
+                token,
                 msg:"You are now registered."
             })
         })
@@ -125,11 +116,11 @@ class Users{  //contains all the methods that you have in database
             data.userPass = hashSync(data.userPass,15)
         }
         const query =`
-        UPDATE Users
+        UPDATE users
         SET ?
         WHERE userID = ${req.params.id};
         `
-        db.query(query,[req.body],(err)=>{
+        database.query(query,[req.body],(err)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
@@ -139,10 +130,10 @@ class Users{  //contains all the methods that you have in database
     }
     deleteUser(req,res){
         const query =`
-        DELETE FROM Users
+        DELETE FROM users
         WHERE userID = ${req.params.id};
         `
-        db.query(query,(err)=>{
+        database.query(query,(err)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,

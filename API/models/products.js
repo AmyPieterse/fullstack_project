@@ -1,24 +1,5 @@
 const database = require ('../config')
-
 class Products{ 
-    async createProduct(req,res){
-        const data =req.body //saving req.body in object
-        //payload
-        const user ={
-            // all data that comes from req.body we save in a new object data
-            productName : data.prodName,
-            price : data.amount,
-            category : data.category,
-            image : data.prodURL
-        }
-        const query =`
-        INSERT INTO products
-        SET ?
-        `
-        database.query(query,[data],(err)=>{
-            if (err) throw err
-        })
-    }
     fetchProducts(req,res){
         const query =
         `SELECT prodID, prodName, quantity, amount, category, prodURL
@@ -31,25 +12,35 @@ class Products{
             })
         })
     }
-
-    async fetchProduct(req,res){
-        const query =`SELECT prodID,prodName, quantity, amount, category, prodURL
+    async createProduct(req,res){
+        const data =req.body //saving req.body in object
+        //payload from products
+        const product ={
+            // all data that comes from req.body we save in a new object data
+            productName : data.prodName,
+            price : data.amount,
+            category : data.category,
+            image : data.prodURL
+        }
+        const query =`
+        INSERT INTO products
+        SET ?;
+        `
+        database.query(query,[data],(err)=>{
+            if (err) throw err
+            res.json({
+                status: res.statusCode,
+                msg: "Product inserted"
+            })
+        })
+    }
+    fetchProduct(req,res){
+        const query =`SELECT prodID, prodName, quantity, amount, category, prodURL
         FROM products
         WHERE prodID = ${req.params.id};`
         
         database.query(query,(err,result)=>{
-            if(err){
-                return res.status(500).json({
-                    status:res.statusCode,
-                    message: 'Error fetching product'
-                })
-            }
-            if (result.length === 0){
-                return res.status(404).json({
-                status: res.statusCode,
-                message: 'Product not found'
-                })
-            }
+            if(err) throw err
             res.json({
                 status:res.statusCode,
                 result: result[0]
@@ -71,11 +62,13 @@ class Products{
             })
         })
     }
+
     deleteProduct(req,res){
-        const query =`
-        DELETE FROM Products
-        WHERE prodID = ${req.params.id};
-        `
+        
+        const query =`DELETE FROM products WHERE prodID = ${req.params.id};`
+        
+        console.log(query)
+        
         database.query(query,(err)=>{
             if(err) throw err
             res.json({
