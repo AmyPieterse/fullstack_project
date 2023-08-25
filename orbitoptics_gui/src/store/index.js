@@ -11,7 +11,8 @@ products: null,
 product:null,
 spinner:false,
 token: null,
-msg: null
+msg: null,
+inputDetails: null
 },
   getters: {
   },
@@ -33,6 +34,18 @@ msg: null
     },
     setToken(state, token){
       state.token = token
+    },
+    setInputs(state, data){
+      state.inputDetails = data
+    },
+    setDelete(state, data){
+      state.products = data
+    },
+    submitUser(state, userForm){
+      state.user.push(userForm)
+    },
+    setMsg(state, value) {
+      state.msg = value
     }
   },
   actions: {
@@ -44,6 +57,26 @@ msg: null
         context.commit("setMsg", "An error occured")
       }
     },
+    async deleteProduct(context, prodID){
+      try {
+        const data = await axios.delete(`${link}products/${prodID}`)
+        context.commit('fetchProducts', data)
+      } catch ( error ){
+        alert( error )
+      }
+    },
+    //  async addProducts(context, productsdata){
+    //   try{
+    //     const {data} = await axios.post(`${link}products`, productsdata)
+    //     const {msg} = await data
+    //     if(msg){
+    //       context.commit('setMsg', msg)
+    //       context.dispatch("fetchProducts")
+    //     }
+    //   }catch(e){
+    //     console.log("An error occured")
+    //   }
+    // },
     async fetchUsers(context){
       try{
         const {data} = (await axios.get(`${link}users`))
@@ -52,7 +85,28 @@ msg: null
         context.commit("setMsg", "An error occured")
       }
     },
-    // *****************************
+    async submitUser(context, userdata){
+      try{
+        const {data} = await axios.post(`${link}register`, userdata)
+        const {msg} = await data
+        if(msg) {
+          context.commit('setMsg', msg)
+          context.dispatch("fetchUsers")
+        }
+      } catch(e){
+        console.log("An error occured")
+      }
+    }, 
+    async deleteUsers(context, userID){
+      try {
+        const data = await axios.delete(`${link}users/${userID}`)
+        if(data) {
+          context.commit('fetchUsers')
+        }
+      } catch ( error ){
+        alert( error )
+      }
+    },
   },
   modules: {
   }

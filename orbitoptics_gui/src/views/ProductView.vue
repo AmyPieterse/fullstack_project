@@ -1,5 +1,6 @@
 <template>
   <div class="Product">
+    
     <div class="card" v-for="product in products" :key="product">
       <div class="image">
         <img
@@ -15,7 +16,9 @@
           {{ product.category }}
         </p>
         <p class="card-text">
-          {{ product.amount }}
+          
+          
+          ${{ product.amount }}
         </p>
 
 <router-link :to="{ name: 'singleProduct', params: { id: product.prodID }, query: {

@@ -2,9 +2,14 @@
   <div class="Admin">
     <div class="Products-table">
       <h4>Products</h4>
+           <!-- <AddUser/> -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProduct">
+  <i class="bi bi-plus-lg"></i> Product
+</button>
       <table class="table">
         <thead>
           <tr>
+            <th class="text-black">ID</th>
             <th class="text-black">Name</th>
             <th class="text-black">Catorgory</th>
             <th class="text-black">Quntity</th>
@@ -18,18 +23,19 @@
           id="whereTheyDisplay"
           v-for="item in products"
           :key="item.prodID"
-        >
+        >                            
           <tr>
-            <td>{{ item.prodName }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.amount }}</td>
-            <td>{{ item.category }}</td>
+            <td>{{ item.prodID}}</td>
+            <td>{{ item.prodName}}</td>
+            <td>{{ item.category}}</td>
+            <td>{{ item.quantity}}</td>
+            <td>${{ item.amount}}</td>
             <td>
               <img :src="item.prodURL" alt="" width="10rem" />
             </td>
             <td><button class="edit-btn">Edit</button></td>
             <td>
-              <button class="del-btn" onclick="deleteProduct() ">Delete</button>
+              <button class="del-btn" @click="deleteProduct(item.prodID) ">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -37,7 +43,9 @@
     </div>
     <div class="User-table">
       <h4>Users</h4>
-     <AddUser/>
+     <!-- <AddUser/> -->
+<AddUser/>
+     <!-- Button trigger modal -->
       <table class="table">
         <thead>
           <tr>
@@ -48,6 +56,7 @@
             <th class="text-black">Gender</th>
             <th class="text-black">UserRole</th>
             <th class="text-black">EmailAdd</th>
+            <th class="text-black">userProfile</th>
             <th class="text-black">Actions</th>
           </tr>
         </thead>
@@ -61,10 +70,12 @@
             <td>{{ item.gender }}</td>
             <td>{{ item.userRole }}</td>
             <td>{{ item.emailAdd }}</td>
+            <td>{{ item.userProfile }}</td>
           
-              <td><button class="edit-btn">Edit</button></td>
               <td>
-              <button class="del-btn" onclick="deleteProduct() ">Delete</button>
+                <button class="edit-btn">Edit</button>
+
+                <button class="del-btn" @click="deleteUser(item.UserID) ">Delete</button>
             </td>
         
           </tr>
@@ -76,6 +87,7 @@
 
 <script>
 import AddUser from '@/components/AddUserComp.vue';
+
 export default {
   components:{
     AddUser
@@ -86,12 +98,20 @@ export default {
     },
     users() {
       return this.$store.state.users;
-    },
+    }
   },
   mounted() {
     this.$store.dispatch("fetchUsers");
     this.$store.dispatch("fetchProducts");
   },
+  methods:{
+    deleteProduct(prodID){
+      this.$store.dispatch('deleteProduct', prodID)
+    },
+    deleteUsers(userId){
+      this.$store.dispatch('deleteUsers', userID)
+    },
+  }
 };
 </script>
 

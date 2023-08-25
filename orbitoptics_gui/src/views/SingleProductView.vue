@@ -35,10 +35,10 @@ img{
 .card-img-top{
     background-color:rgb(30, 30, 30) ;
 }
-.test{
+/* .test{
     aspect-ratio: 1 / 1;
     object-fit: cover;
-}
+} */
 .card{
 text-align: center;
 }
