@@ -12,7 +12,7 @@ import FooterComp from "./components/FooterComp.vue";
 
 export default {
   components: {
-    NavBarComp,
+     NavBarComp,
     FooterComp,
   },
 };
