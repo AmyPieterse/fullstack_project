@@ -102,19 +102,14 @@ class Users{  //contains all the methods that you have in database
         }
         const query =`
         INSERT INTO Users
-        SET ?
+        SET ?;
         `
         db.query(query,[data],(err)=>{
             if (err) throw err
             let token = createToken(user)
-            res.cookie('UserCookie',token,
-            {
-                maxAge:3600000,
-                httpOnly:true
-            })
             res.json({
-                token,
                 status:res.statusCode,
+                token,
                 msg:"You are now registered."
             })
         })
