@@ -12,7 +12,7 @@ class Products{
         }
         const query =`
         INSERT INTO products
-        SET ?
+        SET ?;
         `
         database.query(query,[data],(err)=>{
             if (err) throw err
@@ -76,7 +76,12 @@ class Products{
         WHERE prodID = ${req.params.id};
         `
         database.query(query,(err)=>{
-            if(err) throw err
+            if(err){
+                return res.status(500).json({
+                    status:res.statusCode,
+                    message: 'Error deleting product'
+                })
+            }
             res.json({
                 status: res.statusCode,
                 msg: "The product record has been deleted"
