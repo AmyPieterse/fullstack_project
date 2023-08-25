@@ -10,25 +10,22 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add user</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form @submit.prevent="submitUser">
-            <input type="text" v-model="userForm.firstName" placeholder="firstName">
-            <input type="text" v-model="userForm.lastName" placeholder="lastName">
-            <input type="number" v-model="userForm.userAge" placeholder="userAge">
-            <input type="text" v-model="userForm.gender" placeholder="gender">
-            <input type="text" v-model="userForm.userRole" placeholder="userRole">
-            <input type="text" v-model="userForm.emailAdd" placeholder="emailAdd">
-            <input type="text" v-model="userForm.userPass" placeholder="userPass">
-            <input type="text" v-model="userForm.profileUrl" placeholder="profileUrl">
-            <button type="submit">Add</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <form>
+            <input type="text" :v-model="userForm.firstName" placeholder="firstName">
+            <input type="text" :v-model="userForm.lastName" placeholder="lastName">
+            <input type="number" :v-model="userForm.userAge" placeholder="userAge">
+            <input type="text" :v-model="userForm.gender" placeholder="gender">
+            <input type="text" :v-model="userForm.userRole" placeholder="userRole">
+            <input type="text" :v-model="userForm.emailAdd" placeholder="emailAdd">
+            <input type="text" :v-model="userForm.profileUrl" placeholder="profileUrl">
+            <button type="submit" @click.prevent="submitUser">Add</button>
+          </form>
+        </div>
+        <div class="modal-footer">
       </div>
     </div>
   </div>
@@ -43,21 +40,23 @@
                 userForm:{
                     firstName:"",
                     lastName:"",
-                    userAge:"",
+                    userAge: null,
                     gender:"",
                     userRole:"",
                     emailAdd:"",
-                    userPass:"",
                     profileUrl:""
                 }
             }
         },
+        computed: {
+          message() {
+            return this.$store.state.msg
+          }
+        },
         methods:{
-            async submitUser(){
-                this.$store.dispatch('addUsers', this.userForm)
-                // setTimeout(()=>{
-                //     location.reload()
-                // }, 500)
+            submitUser(){
+              this.$store.dispatch('submitUser', this.userForm)
+              alert(this.message)
             }
         }
     }

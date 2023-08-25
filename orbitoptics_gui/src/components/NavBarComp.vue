@@ -45,9 +45,13 @@ height: 70px;
 .nav-link {
   color: white;
 
+
 }
 .navbar-brand{
   color: white;
 
+}
+.nav-link:hover{
+ 
 }
 </style>

@@ -40,6 +40,12 @@ inputDetails: null
     },
     setDelete(state, data){
       state.products = data
+    },
+    submitUser(state, userForm){
+      state.user.push(userForm)
+    },
+    setMsg(state, value) {
+      state.msg = value
     }
   },
   actions: {
@@ -53,39 +59,54 @@ inputDetails: null
     },
     async deleteProduct(context, prodID){
       try {
-        const res = await axios.delete(`${link}products/${prodID}`)
-        // this.$store.dispatch('fetchProducts')
-        context.commit('setDelete', res)
+        const data = await axios.delete(`${link}products/${prodID}`)
+        context.commit('fetchProducts', data)
       } catch ( error ){
         alert( error )
       }
     },
+    //  async addProducts(context, productsdata){
+    //   try{
+    //     const {data} = await axios.post(`${link}products`, productsdata)
+    //     const {msg} = await data
+    //     if(msg){
+    //       context.commit('setMsg', msg)
+    //       context.dispatch("fetchProducts")
+    //     }
+    //   }catch(e){
+    //     console.log("An error occured")
+    //   }
+    // },
     async fetchUsers(context){
       try{
-        const {data} = (await axios.get(`${link}register`))
+        const {data} = (await axios.get(`${link}users`))
         context.commit("setUsers", data.results)
       } catch(e){
         context.commit("setMsg", "An error occured")
       }
     },
-    async addUsers(context, userForm){
+    async submitUser(context, userdata){
       try{
-        const res = await axios.post(`${link}users`, userForm)
-        context.commit('setInputs', res.data)
-        console.log(res.data);
-        // const {msg, err} = await res.data
-        // if(msg){
-        //   context.commit('setInputs', res.data)
-        // }
-        // if(err){
-        //   console.log("An error has occured")
-        // }
+        const {data} = await axios.post(`${link}register`, userdata)
+        const {msg} = await data
+        if(msg) {
+          context.commit('setMsg', msg)
+          context.dispatch("fetchUsers")
+        }
       } catch(e){
         console.log("An error occured")
       }
     }, 
-
-    // *****************************
+    async deleteUsers(context, userID){
+      try {
+        const data = await axios.delete(`${link}users/${userID}`)
+        if(data) {
+          context.commit('fetchUsers')
+        }
+      } catch ( error ){
+        alert( error )
+      }
+    },
   },
   modules: {
   }

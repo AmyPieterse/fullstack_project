@@ -1,5 +1,6 @@
 <template>
   <div class="Product">
+    
     <div class="card" v-for="product in products" :key="product">
       <div class="image">
         <img
