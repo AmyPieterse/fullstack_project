@@ -2,7 +2,7 @@ const database = require ('../config')
 class Products{ 
     async createProduct(req,res){
         const data =req.body //saving req.body in object
-        //payload
+        //payload from user
         const user ={
             // all data that comes from req.body we save in a new object data
             productName : data.prodName,
