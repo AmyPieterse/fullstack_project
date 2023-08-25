@@ -18,18 +18,6 @@ class Products{
             if (err) throw err
         })
     }
-    fetchProducts(req,res){
-        const query =
-        `SELECT prodID, prodName, quantity, amount, category, prodURL
-        FROM products;`
-        database.query(query,(err,results)=>{
-            if(err) throw err
-            res.json({
-                status:res.statusCode,
-                results
-            })
-        })
-    }
 
     async fetchProduct(req,res){
         const query =`SELECT prodID,prodName, quantity, amount, category, prodURL
@@ -70,18 +58,15 @@ class Products{
             })
         })
     }
+
     deleteProduct(req,res){
-        const query =`
-        DELETE FROM products
-        WHERE prodID = ${req.params.id};
-        `
+        
+        const query =`DELETE FROM products WHERE prodID = ${req.params.id};`
+        
+        console.log(query)
+        
         database.query(query,(err)=>{
-            if(err){
-                return res.status(500).json({
-                    status:res.statusCode,
-                    message: 'Error deleting product'
-                })
-            }
+            if(err) throw err
             res.json({
                 status: res.statusCode,
                 msg: "The product record has been deleted"
