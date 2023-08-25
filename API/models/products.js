@@ -16,6 +16,10 @@ class Products{
         `
         database.query(query,[data],(err)=>{
             if (err) throw err
+            res.json({
+                status: res.statusCode,
+                msg: "User inserted"
+            })
         })
     }
     fetchProducts(req,res){
