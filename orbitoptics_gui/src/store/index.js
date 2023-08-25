@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-const link = "https://node-eomp-4a72.onrender.com/"
+const link = ""
 
 
 export default createStore({

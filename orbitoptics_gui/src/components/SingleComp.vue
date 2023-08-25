@@ -10,7 +10,7 @@
         <p class="card-text">
           {{ product.category }}</p>
         <p class="card-text">
-          {{ product.amount}}</p>
+          {{product.amount}}</p>
           <div class="card-footer text-body-secondary">
         <router-link to="/products" class="btn btn-primary">Back</router-link>
         <br /><br />
