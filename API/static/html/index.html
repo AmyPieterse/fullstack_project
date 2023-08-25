@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>API</title>
+</head>
+<body>
+    
+    <header>
+        <h2>Routes description</h2>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <td>HTTP Methods</td>
+                    <td>Path</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tr>
+                <td>GET</td>
+                <td>/</td>
+                <td>Takes you to homepage</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users</td>
+                <td>Gives you the users from table users</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users/:id</td>
+                <td>Retrieves a specific user based on id from table users</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/register</td>
+                <td>Adds a user to table users (Register)</td>
+            </tr>
+            <tr>
+                <td>PATCH/PUT</td>
+                <td>/users/:id</td>
+                <td>Updates user details based on id in table users</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/login</td>
+                <td>Checks if user details matches details in user table</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/users/:id</td>
+                <td>Deletes user based on id from table users</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/products</td>
+                <td>Retrieves all the products from table products</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/products/:id</td>
+                <td>Retrieves a specific product based on id from table products</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/products</td>
+                <td>Adds a product to the table</td>
+            </tr>
+            <tr>
+                <td>PUT/PATCH</td>
+                <td>/products/:id</td>
+                <td>Updates a product based on id to products table</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>/products/:id</td>
+                <td>Deletes a product based on id from table</td>
+            </tr>
+        </table>
+    </main>
+</body>
+</html>
