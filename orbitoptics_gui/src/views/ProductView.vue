@@ -41,6 +41,7 @@ export default {
     products() {
       return this.$store.state.products;
     },
+    
   },
   mounted() {
     this.$store.dispatch("fetchProducts");
@@ -55,6 +56,7 @@ export default {
     // },
   },
 };
+
 </script>
 
 <style scoped>
