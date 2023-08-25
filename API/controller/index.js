@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const routes = express()
 // const {verifyAToken} = require('../middleware/authenticate')
 //Import all model's objects
-const {users, products} = require('../model')
+const {users, products} = require('../models')
 
 //ROUTE FUNCTIONALITY-GET '/users'
 routes.get('/users',(req, res)=>{ 
